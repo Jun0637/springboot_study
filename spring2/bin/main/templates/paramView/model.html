@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!-- Thymeleaf사용 (템플릿 엔진) -->
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="UTF-8">
+<title>model</title>
+
+</head>
+<body>
+<h2>[Model 객체 사용]</h2>''
+<p th:text="${number}">123</p>
+<p>서버에서 가져온 문자열(<span th:text="${str}">테스트</span>)입니다.</p>
+<p th:text="${list}">list</p>
+<p th:text="${abc}">abc</p>
+<p>[[${list}]]</p>
+<p>[[${person}]]</p>
+<p>[[${person.name}]]</p>
+</body>
+</html>

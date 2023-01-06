@@ -6,6 +6,7 @@
 </head>
 <body>
 	<h1>[ spring2 ]</h1>
+	<h2><span th:text="${session.id}"></span>님 접속중</span></h2>
 	<ol>
 	<li>로그
 	<ul>
@@ -18,8 +19,18 @@
 		<li><a href="param/input1?name=abc&age=1">GET method parameter 전달-URL에 전달붙여서</a></li>
 		<li><a href="param/test2">POST method parameter 전달</a></li>
 		<li><a href="param/test3">POST method parameter 전달-객체로 전달</a></li>
+		<li><a href="param/model">모델 사용하기</a></li>
 	</ul>
 	</li>
+		<li>세션 사용하기
+	<ul>
+		<li><a href="session/stest1">세션에 값 저장</a></li>
+		<li><a href="session/stest2">세션 값 읽기</a></li>
+		<li><a href="session/stest3">세션의 값 삭제</a></li>
+		<li><a href="session/stest4">로그인</a></li>
+	</ul>
+	</li>
+	
 	</ol>
 </body>
 </html>

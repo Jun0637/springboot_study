@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<!-- Thymeleaf사용 (템플릿 엔진) -->
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="UTF-8">
+<title>세션 값 저장</title>
+
+</head>
+<body>
+<p>세션값 출력하기</p>
+<!-- page < request < session < application -->
+<p th:text="${session.id}"></p>
+</body>
+</html>

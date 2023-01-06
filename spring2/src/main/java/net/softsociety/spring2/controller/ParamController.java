@@ -1,6 +1,9 @@
 package net.softsociety.spring2.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -48,6 +51,24 @@ public class ParamController {
 	@PostMapping("/param/input3")
 	public String input3(Person p) {
 		System.out.println(p);
-		return "redirect:/";
+		return "redirect:/"; 
+	}
+	
+	@GetMapping("/param/model")
+	public String model(Model model) {
+		int num = 999;
+		String str  = "서버의 문자열";
+		ArrayList<String> list = new ArrayList<>();
+		list.add("aaa");
+		list.add("bbb");
+		list.add("ccc");
+		Person p = new Person("aaa", "bbb" ,"홍길동", "010-2222-3333", "KT");
+		
+		model.addAttribute("number", num);
+		model.addAttribute("str", str);
+		model.addAttribute("list", list);
+		model.addAttribute("person", p);
+		
+		return "/paramView/model"; //포워딩 : 요청정보가 남아있는상태로 이동
 	}
 }
