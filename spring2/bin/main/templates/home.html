@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="htpp://www.thymeleof.org">
 <head>
 <meta charset="UTF-8">
 <title>spring2</title>
 </head>
 <body>
 	<h1>[ spring2 ]</h1>
-	<h2><span th:text="${session.id}"></span>님 접속중</span></h2>
+	<h2 th:if="${session.LoginId != null"><span th:text="${session.LoginId}"></span>님 접속중</h2>
 	<ol>
 	<li>로그
 	<ul>
-		<li><a href="logtest">log 출륙하기</a>
+		<li><a href="logtest">log 출력하기</a>
 	</ul>
 	</li>
 	<li>서버와 값주고 받기
@@ -28,6 +28,14 @@
 		<li><a href="session/stest2">세션 값 읽기</a></li>
 		<li><a href="session/stest3">세션의 값 삭제</a></li>
 		<li><a href="session/stest4">로그인</a></li>
+		<li><a href="session/stest5">로그아웃</a></li>
+	</ul>
+	</li>
+	<li>쿠기 사용하기
+	<ul>
+		<li><a href="cookie/ck1">쿠키 저장</a></li>
+		<li><a href="cookie/ck2">쿠키 읽기</a></li>
+		<li><a href="cookie/ck1">쿠키 삭제</a></li>
 	</ul>
 	</li>
 	
