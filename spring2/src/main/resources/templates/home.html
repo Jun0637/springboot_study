@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>[ spring2 ]</h1>
-	<h2 th:if="${session.LoginId != null"><span th:text="${session.LoginId}"></span>님 접속중</h2>
+	<h2 th:if="${session.LoginId != null}"><span th:text="${session.LoginId}"></span>님 접속중</h2>
 	<ol>
 	<li>로그
 	<ul>
@@ -36,6 +36,12 @@
 		<li><a href="cookie/ck1">쿠키 저장</a></li>
 		<li><a href="cookie/ck2">쿠키 읽기</a></li>
 		<li><a href="cookie/ck1">쿠키 삭제</a></li>
+	</ul>
+	</li>
+	<li>Thymeleaf
+	<ul>
+		<li><a href="th/thtest1">Thymeleaf</a></li>
+		<li><a href="th/thtest2">Thymeleaf2</a></li>
 	</ul>
 	</li>
 	

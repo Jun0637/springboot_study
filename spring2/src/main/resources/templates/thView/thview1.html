@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- Thymeleaf사용 (템플릿 엔진) -->
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thymeleaf 1</title>
+
+</head>
+<body>
+	<h2>[Thymeleaf 문법 1]</h2>
+	
+	<h3>* 값 출력</h3>
+	<p th:text="${str}">문자열 출력</p>
+	<p>[[${str}]]</p>
+	<p th:text="${num}">0</p>
+	<p th:thex="${person}"></p>
+	<p th:thex="${person.id}"></p>
+	<p th:thex="${person.name}"></p>
+	<!-- html태그를 인식하지 않음 -->
+	<p th:thex="${tag}"></p>
+	<p th:thex="${url}"></p>
+	<!-- 문자열에 포함된 html태그가 실행됨 -->
+	<p th:utext="${tag}"></p>
+	
+	<h3>* 주석</h3>
+	<!-- <p th:text="${str}">문자열 출력</p> -->	
+	<!-- <p>[[${str}]]</p> -->
+	<!--/* <p>[[${str}]]</p> */-->
+	<!--/* <p th:text="${str}"></p> */-->
+	
+	<h3>경로 생성</h3>
+	<p><a href="https://google.com">구글로 이동</a></p>	
+	<p><a th:href="${url}">구글로 이동</a></p>
+		
+	<p><a href="../param/test1">GET 테스트</a></p>	
+	<p><a th:href="@{/param/test1}">GET 테스트</a></p>
+		
+	<p><img src="../image/img02.jpg"></a></p>	
+	<p><img th:src="@{/image/img02.jpg}"></a></p>
+	
+	<h3>연산자</h3>
+	<!-- 산술연산자 + - * / % -->
+	<p th:text="${num + 1}"></p>
+	<!-- 비교연산자 > < <= => == != lt gt le ge eq ne -->
+	<p th:text="${num > 90}"></p>
+	<!-- 논리연산자 and or not -->
+	<p th:text="${num ge 1 and num le 100}"></p>
+	
+	<!-- 문자열 연산자 -->
+	<p th:text="${str + 'efgd'}"></p>
+	<p th:text="|aaa${str}efgd|"></p>
+	
+	<p th:text="${str.equals('abcde')}"></p>
+	<p th:text="${not str.equals('abcde')}"></p>
+	<p th:text="${str == 'abcd'}"></p>
+	<p th:text="${str != 'abcd'}"></p>
+	
+	<!-- 객체 출력 -->
+	<div th:object="${person}">
+	<p th:text="*{id}"></p>
+	<p th:text="*{name}"></p>
+	<p th:text="*{phone}"></p>
+	</div>
+</form>
+</body>
+</html>
