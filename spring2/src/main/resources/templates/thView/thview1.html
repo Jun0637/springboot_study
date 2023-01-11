@@ -61,6 +61,21 @@
 	<p th:text="*{name}"></p>
 	<p th:text="*{phone}"></p>
 	</div>
-</form>
+	
+	<h3>*포메팅</h3>
+	<p th:text="${inum}"></p>
+	<p th:text="${dnum}"></p>
+	<p th:text="${dnum2}"></p>
+	<p th:text="${date}"></p>
+	
+	<!-- 숫자의 전체 자리수ㅡ, 전단위 쉼표, 소수점 아래 자리수 등 지정
+	<!-- COMMA, WHITESPACE, NONE -->
+	<p th:text="${#numbers.formatInteger(inum, 10)}"></p>
+	<p th:text="${#numbers.formatInteger(inum, 3, 'COMMA')}"></p>
+	<p th:text="${#numbers.formatDecimal(inum, 3, 'COMMA', 2, 'POINT')}"></p>
+	<p th:text="${#numbers.formatPercent(inum, 0, 2)}"></p>
+	
+	<p th:text="${#dates.format(date,'yyyy/MM/dd HH.mm')}"></p>
+	<p th:text="${#dates.format(date,'yyyy/MM/dd hh.mm')}"></p>
 </body>
 </html>

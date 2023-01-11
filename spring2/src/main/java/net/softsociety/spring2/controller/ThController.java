@@ -1,5 +1,9 @@
 package net.softsociety.spring2.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,12 +32,40 @@ public class ThController {
 		model.addAttribute("tag", tag);
 		model.addAttribute("url", url);
 		
-		return "thview/thview1";
+		int a =10000;
+		double b = 123.45678;
+		double c = 8.5;
+		Date d = new Date();
+		
+		model.addAttribute("inum",a);
+		model.addAttribute("dnum",b);
+		model.addAttribute("dnum2",c);
+		model.addAttribute("date",d);
+		
+		return "thView/thview1";
 	}
 	
 	@GetMapping("/thtest2")
 	public String thtest2(Model model) {
+		String str ="abc";
+		int num = 1;
+		String values = "Java,CSS,HTML";
 		
-		return "thview/thview2";
+		ArrayList<String>list = new ArrayList<>();
+		list.add("aaa");
+		list.add("bbb");
+		list.add("ccc");
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("name","키보드");
+		map.put("price", 100);
+		
+		model.addAttribute("str", str);
+		model.addAttribute("num", num);
+		model.addAttribute("values", values);
+		model.addAttribute("list", list);
+		model.addAttribute("map", map);
+		
+		return "thView/thview2";
 	}
 }
