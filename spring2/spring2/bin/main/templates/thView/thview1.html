@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- Thymeleaf사용 (템플릿 엔진) -->
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thymeleaf 1</title>
+
+</head>
+<body>
+	<h2>[Thymeleaf 문법 1]</h2>
+	
+	<h3>* 값 출력</h3>
+	<p th:text="${str}">문자열 출력</p>
+	<p>[[${str}]]</p>
+	<p th:text="${num}">0</p>
+	<p th:thex="${person}"></p>
+	<p th:thex="${person.id}"></p>
+	<p th:thex="${person.name}"></p>
+	<!-- html태그를 인식하지 않음 -->
+	<p th:thex="${tag}"></p>
+	<p th:thex="${url}"></p>
+	<!-- 문자열에 포함된 html태그가 실행됨 -->
+	<p th:utext="${tag}"></p>
+	
+	<h3>* 주석</h3>
+	<!-- <p th:text="${str}">문자열 출력</p> -->	
+	<!-- <p>[[${str}]]</p> -->
+	<!--/* <p>[[${str}]]</p> */-->
+	<!--/* <p th:text="${str}"></p> */-->
+	
+	<h3>경로 생성</h3>
+	<p><a href="https://google.com">구글로 이동</a></p>	
+	<p><a th:href="${url}">구글로 이동</a></p>
+		
+	<p><a href="../param/test1">GET 테스트</a></p>	
+	<p><a th:href="@{/param/test1}">GET 테스트</a></p>
+		
+	<p><img src="../image/img02.jpg"></a></p>	
+	<p><img th:src="@{/image/img02.jpg}"></a></p>
+	
+	<h3>연산자</h3>
+	<!-- 산술연산자 + - * / % -->
+	<p th:text="${num + 1}"></p>
+	<!-- 비교연산자 > < <= => == != lt gt le ge eq ne -->
+	<p th:text="${num > 90}"></p>
+	<!-- 논리연산자 and or not -->
+	<p th:text="${num ge 1 and num le 100}"></p>
+	
+	<!-- 문자열 연산자 -->
+	<p th:text="${str + 'efgd'}"></p>
+	<p th:text="|aaa${str}efgd|"></p>
+	
+	<p th:text="${str.equals('abcde')}"></p>
+	<p th:text="${not str.equals('abcde')}"></p>
+	<p th:text="${str == 'abcd'}"></p>
+	<p th:text="${str != 'abcd'}"></p>
+	
+	<!-- 객체 출력 -->
+	<div th:object="${person}">
+	<p th:text="*{id}"></p>
+	<p th:text="*{name}"></p>
+	<p th:text="*{phone}"></p>
+	</div>
+	
+	<h3>*포메팅</h3>
+	<p th:text="${inum}"></p>
+	<p th:text="${dnum}"></p>
+	<p th:text="${dnum2}"></p>
+	<p th:text="${date}"></p>
+	
+	<!-- 숫자의 전체 자리수ㅡ, 전단위 쉼표, 소수점 아래 자리수 등 지정
+	<!-- COMMA, WHITESPACE, NONE -->
+	<p th:text="${#numbers.formatInteger(inum, 10)}"></p>
+	<p th:text="${#numbers.formatInteger(inum, 3, 'COMMA')}"></p>
+	<p th:text="${#numbers.formatDecimal(inum, 3, 'COMMA', 2, 'POINT')}"></p>
+	<p th:text="${#numbers.formatPercent(inum, 0, 2)}"></p>
+	
+	<p th:text="${#dates.format(date,'yyyy/MM/dd HH.mm')}"></p>
+	<p th:text="${#dates.format(date,'yyyy/MM/dd hh.mm')}"></p>
+</body>
+</html>
