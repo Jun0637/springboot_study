@@ -7,5 +7,13 @@
 <insert id="insertPerson" parameterType="Person">
 	insert into person values (#{idnum}, #{name}, #{age})
 </insert>
-
+<delete  id="deletePerson" parameterType="string">
+	delete from person where idnum = #{idnum}
+</delete>
+<delete  id="delete2Person" parameterType="string">
+	delete from person where upper(name) LIKE ('%'||upper(#{name})||'%')
+</delete>
+<select id="selectOne" parameterType="string" resultType="Person">
+	select * from person where idnum = #{idnum}
+</select>
 </mapper>

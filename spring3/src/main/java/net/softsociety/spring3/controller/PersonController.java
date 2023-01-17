@@ -2,6 +2,7 @@ package net.softsociety.spring3.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -34,4 +35,34 @@ public class PersonController {
 		return "redirect:/";
 	}
 	
+	//전달된 주민등록번호의 회원 삭제
+	@GetMapping("/delete")
+	public String delete(String idnum) {
+		log.debug("삭제할 주민등록번호:{}", idnum);
+		//서비스 클래스로 주민등록번호 전달하여 삭제
+		service.deletePerson(idnum);
+		//메인 화면으로 리다이렉트
+		return "redirect:/";
+		
+	}
+	
+	@GetMapping("/delete2")
+	public String delete2(String name) {
+		log.debug("이름 삭제:{}", name);
+		//서비스 클래스로 이름 전달하여 삭제
+		service.delete2Person(name);
+		//메인 화면으로 리다이렉트
+		return "redirect:/";
+		
+	}
+	
+	@GetMapping("/selectOne")
+	public String select(String idnum, Model model) {
+		log.debug("조회할 주민등록번호:{}", idnum);
+		//서비스 클래스로 주민등록번호 전달
+		Person person = service.selectOne(idnum);
+		model.addAttribute("person",person);
+		return "/viewPerson";
+		
+	}
 }
