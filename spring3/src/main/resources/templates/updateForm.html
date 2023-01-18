@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>spring3</title>
+<script>
+	$(documnet).ready(function() {
+
+	})
+</script>
+</head>
+<body>
+	<h2>[수정]</h2>
+
+	<form>
+		<input type="hidden" name="idnum" th:value="${person.idnum}">
+		이름 : <input type="text" name="name" th:value="${person.name}">
+		나이 : <input type="text" name="age" th:value="${person.age}">
+		<input type="submit" value="수정하기"><br>
+	</form>
+</body>
+</html>

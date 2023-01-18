@@ -1,5 +1,7 @@
 package net.softsociety.spring3.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -31,4 +33,10 @@ public class PersonService {
 		Person person = dao.selectOne(idnum);
 		return person;
 	}
+
+	public ArrayList<Person> select() {
+		ArrayList<Person> list = dao.select();
+		return list;
+	}
+
 }

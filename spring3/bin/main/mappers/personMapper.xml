@@ -16,4 +16,13 @@
 <select id="selectOne" parameterType="string" resultType="Person">
 	select * from person where idnum = #{idnum}
 </select>
+<select id="select" resultType="Person">
+	select * from person 
+</select>
+<update id="update">
+		update 
+		idnum = #{idnum},
+		name = #{name}
+		WHERE age = #{age}
+</update>
 </mapper>

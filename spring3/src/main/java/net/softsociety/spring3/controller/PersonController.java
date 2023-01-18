@@ -1,5 +1,7 @@
 package net.softsociety.spring3.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +44,7 @@ public class PersonController {
 		//서비스 클래스로 주민등록번호 전달하여 삭제
 		service.deletePerson(idnum);
 		//메인 화면으로 리다이렉트
-		return "redirect:/";
+		return "redirect:/select";
 		
 	}
 	
@@ -64,5 +66,19 @@ public class PersonController {
 		model.addAttribute("person",person);
 		return "/viewPerson";
 		
+	}
+	
+	@GetMapping("/select")
+	public String select(Model model) {
+		ArrayList<Person>list = service.select();
+		model.addAttribute("list", list);
+		return "/viewList";
+	}
+	
+	@GetMapping("/update")
+	public String update(String idnum, Model model) {
+		Person person = service.selectOne(idnum);
+		model.addAttribute("person", person);
+		return "/updateForm";
 	}
 }

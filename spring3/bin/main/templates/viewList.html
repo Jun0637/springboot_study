@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>spring3</title>
+<style>
+table, th, td {
+	border: 1px solid black;
+}
+</style>
+<script>
+function deletePerson(num){
+/*	alert('aa')
+	confirm('aa')
+	prompt('aa')*/
+	if(confirm('정말 삭제하겠습니까?')){
+		location.href = 'delete?idnum=' + num;
+	}
+}
+</script>
+</head>
+<body>
+<h2>[모든정보조회]</h2>
+	<table>
+	<tr>
+	<th>주민등록번호</th>
+	<th>이름</th>
+	<th>나이</th>
+	<th>수정</th>
+	<th>삭제</th>
+	</tr>
+	
+		<tr th:each="person : ${list}">
+			<td th:text="${person.idnum}"></td>
+			<td th:text="${person.name}"></td>
+			<td th:text="${person.age}"></td>
+			<td>
+				<a th:href="${'update?idnum=' + person.idnum}">수정</a>
+			</td>
+			<td>
+				<a th:href="${'delete?idnum=' + person.idnum}">삭제</a>
+				
+				<input type="button" value="삭제" th:id="|bt${person.idnum}|"
+				th:idnum="${person.idnum}"
+				onclick="deletePerson(this.getAttribute('idnum'))">
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
