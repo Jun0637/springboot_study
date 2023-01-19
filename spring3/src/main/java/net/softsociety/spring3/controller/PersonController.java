@@ -79,6 +79,13 @@ public class PersonController {
 	public String update(String idnum, Model model) {
 		Person person = service.selectOne(idnum);
 		model.addAttribute("person", person);
-		return "/updateForm";
+		return "/updateFo"
+				+ "rm";
+	}
+	
+	@PostMapping("/update")
+	public String update(Person person) {
+		service.updatePerson(person);
+		return "redirect:/select";
 	}
 }

@@ -22,4 +22,6 @@ public interface PersonDAO {
 	public Person selectOne(String idnum);
 	//모든 회원 조회
 	public ArrayList<Person> select();
+	//회원정보 수정
+	public int updatePerson(Person person);
 }

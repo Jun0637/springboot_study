@@ -39,4 +39,10 @@ public class PersonService {
 		return list;
 	}
 
+	public int updatePerson(Person person) {
+		int n = dao.updatePerson(person);
+		return n;
+		
+	}
+
 }

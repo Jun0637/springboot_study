@@ -4,19 +4,29 @@
 <meta charset="UTF-8">
 <title>spring3</title>
 <script>
-	$(documnet).ready(function() {
-
-	})
+//submit 버튼을 이용한 폼 수정
+function formsubmit(){
+	if(confirm("수정?")){
+		return true;
+	}
+	return false;
+}
+// 버튼 click 이벤트를 이용한 폼 전송
+function formsubmit2(){
+	if(confirm("수정?")){
+		document.getElementById("form").submit();
+	}
+}
 </script>
 </head>
 <body>
 	<h2>[수정]</h2>
 
-	<form>
-		<input type="hidden" name="idnum" th:value="${person.idnum}">
+	<form id="form" action="update" method="post">
+		<input type="text" name="idnum" th:value="${person.idnum}" readonly="readonly">
 		이름 : <input type="text" name="name" th:value="${person.name}">
 		나이 : <input type="text" name="age" th:value="${person.age}">
-		<input type="submit" value="수정하기"><br>
+		<input type="button" value="수정하기" onclick="formsubmit2()"><br>
 	</form>
 </body>
 </html>

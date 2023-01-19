@@ -19,10 +19,10 @@
 <select id="select" resultType="Person">
 	select * from person 
 </select>
-<update id="update">
-		update 
-		idnum = #{idnum},
+<update id="updatePerson" parameterType="Person">
+		update person set
+		age = #{age},
 		name = #{name}
-		WHERE age = #{age}
+		WHERE idnum = #{idnum}
 </update>
 </mapper>
