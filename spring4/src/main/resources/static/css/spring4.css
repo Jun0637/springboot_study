@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+h1 {
+	font-family: "궁서";
+	font-size: 20px;
+	width: 400px;
+	text-align: center;
+}
+
+th {
+	text-align: left;
+}
+td {
+	margin: 10px;
+	padding: 5px;
+	width: 350px;
+}
+textarea {
+	width: 300px;
+	height: 100px;
+}
+table.list {
+	margin: 1px;
+	border-top: 1px black solid;
+	border-bottom: 1px black solid;
+}
+pre {
+	padding: 10px;
+	font-size: 15px;
+}

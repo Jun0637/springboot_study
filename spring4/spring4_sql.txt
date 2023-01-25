@@ -1,0 +1,17 @@
+--spring4 예제의 테이블
+
+-- 방명록 글
+create table guestbook (
+	num 		number primary key, 		--글번호
+	name 		varchar2(30) not null, 		--이름
+	password 	varchar2(30) not null,		--비밀번호
+	contents	varchar2(2000) not null, 	--글내용
+	inputdate 	date default sysdate 		--작성시간
+);
+
+-- 방명록 글번호에 사용할 시퀀스
+create sequence guestbook_seq;
+
+-- 글 저장 SQL구문 예
+insert into guestbook (num, name, password, contents)
+values (guestbook_seq.nextval, '김영희', '1111', '글 내용');
