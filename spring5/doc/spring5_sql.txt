@@ -1,0 +1,17 @@
+--spring5 예제의 테이블
+
+-- 회원가입
+CREATE TABLE spring5_member (
+    memberid VARCHAR2(20) PRIMARY KEY,--사용자 ID 
+	memberpw VARCHAR2(100) NOT NULL,	 	--비밀번호
+    membername VARCHAR2(30) NOT NULL,			--사용자 이름
+    email VARCHAR2(50),			--이메일
+    phone VARCHAR2(50),			--전화번호
+    address VARCHAR2(150),			--주소
+    enabled NUMBER(1) DEAFAULT 1,
+    rolename VARCHAR2(20) DEAFAULT 'ROLE_USER'
+);
+
+-- SQL구문 예
+insert into spring5_member (memberid, memberpw, membername, email,phone,address)
+values ('aaa', '111','박잼민','aa@naver.com','010-1111-1111,'서울시 강남구 삼성동');
