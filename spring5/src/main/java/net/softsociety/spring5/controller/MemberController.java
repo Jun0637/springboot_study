@@ -2,6 +2,7 @@ package net.softsociety.spring5.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,5 +37,30 @@ public class MemberController {
 		log.debug("가입데이터 : {}", member);
 		service.insert(member);
 		return "redirect:/";
+	}
+	
+	@GetMapping("idcheck")
+	public String idcheck() {
+		return "memberView/idcheck";
+	}
+	
+	@PostMapping("idcheck")
+	public String idcheck(String id, Model model) {
+		log.debug("검색할 아이디 : {}", id);
+		
+		boolean res = service.idcheck(id);
+		
+		model.addAttribute("searchId", id);
+		model.addAttribute("result", res);
+		
+		return "memberView/idcheck";
+	}
+	/**
+	 * 로그인 폼으로 이동
+	 * @return
+	 */
+	@GetMapping("loginForm")
+	public String loginForm() {
+		return "memberView/loginForm";
 	}
 }

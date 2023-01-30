@@ -31,11 +31,11 @@ dependencies {
 	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.0'
 
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
-//	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//	testImplementation 'org.springframework.security:spring-security-test'	
+	testImplementation 'org.springframework.security:spring-security-test'	
 	
 }
 
