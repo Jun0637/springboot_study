@@ -1,10 +1,10 @@
 package net.softsociety.spring5.service;
 
-import org.springframework.stereotype.Service;
-
 import net.softsociety.spring5.domain.Member;
 
-@Service
+/**
+ * 회원정보 관련 처리
+ */
 public interface MemberService {
 	/**
 	 * 회원정보 저장 (가입)

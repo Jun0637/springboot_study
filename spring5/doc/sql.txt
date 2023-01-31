@@ -1,0 +1,20 @@
+--spring5 예제 테이블 구조
+
+--회원정보
+create table spring5_member (
+	memberid	varchar2(20) primary key,		--사용자 식별 ID
+	memberpw	varchar2(100) not null,			--비밀번호
+	membername	varchar2(30) not null, 			--사용자 이름
+	email		varchar2(50),					--이메일주소
+	phone		varchar2(50),					--전화번호
+	address		varchar2(150),					--주소
+	enabled		number(1) default 1,			--계정 상태 (1-사용가능, 0-불가능)
+	rolename	varchar2(20) default 'ROLE_USER' --Role ('ROLE_USER' - 일반회원, 'ROLE_ADMIN' - 관리자)
+);
+
+--저장 예
+insert into spring5_member (memberid, memberpw, membername, email, phone, address)
+values ('aaa','111','홍길동','aaa@aaa.com','010-1111-1111','서울시 강남구 삼성동111');
+
+
+

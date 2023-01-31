@@ -38,11 +38,11 @@ function idcheck() {
 </head>
 <body>
 	<header>
-	<h1>[ 회원가입 ]</h1>
+	<h1>[ 개인정보 수정 ]</h1>
 	</header>
 	
 	<section>
-	<form id="joinform" th:action="@{/member/join}"  method="post" onsubmit="return validation();">
+	<form id="joinform" th:action="@{/member/mypage}"  method="post" onsubmit="return validation();">
 	<table>
 		<tr>
 			<th>ID</th>
@@ -58,7 +58,7 @@ function idcheck() {
 		</tr>
 		<tr>
 			<th>이름</th>
-			<td><input type="text" name="membername" id="membername" placeholder="이름 입력"></td>
+			<td><input type="text" name="membername" id="membername" th:value= "${member.membername}" placeholder="이름 입력"></td>
 		</tr>
 		<tr>
 			<th>이메일</th>
