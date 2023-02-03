@@ -26,4 +26,11 @@ public interface MemberService {
 	 * @return	해당 회원의 정보
 	 */
 	public Member getMember(String id);
+	
+	/**
+	 * 회원정보 수정
+	 * @param member 수정할 정보
+	 * @return 처리한 행 개수
+	 */
+	public int update(Member member);
 }

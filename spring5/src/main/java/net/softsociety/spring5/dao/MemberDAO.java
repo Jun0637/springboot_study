@@ -10,4 +10,6 @@ public interface MemberDAO {
 	int insert(Member member);
 	//회원정보 조회
 	Member select(String memberid);
+	//회원정보 수정
+	int update(Member member);
 }

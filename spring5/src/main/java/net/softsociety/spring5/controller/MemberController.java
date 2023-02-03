@@ -69,28 +69,33 @@ public class MemberController {
 	
 	/**
 	 * 개인정보 수정 폼으로 이동
-	 * @return
 	 */
-	@GetMapping("/mypage")
-	public String mypage(@AuthenticationPrincipal UserDetails user) {
-		log.debug("인증정보 : {}" , user.getUsername());
+	@GetMapping("mypage")
+	public String mypage (@AuthenticationPrincipal UserDetails user, Model model){
+		log.debug("인증정보 : {}", user.getUsername());
 		//DB에서 현재 사용자 정보 읽어서 Member 객체로 받음
 		//Model에 Member객체 담기
 		//수정폼으로 이동
+		Member member = service.getMember(user.getUsername());
+		model.addAttribute("member", member);
 		return "memberView/mypageForm";
 	}
 	
 	/**
 	 * 개인정보 수정 처리
-	 * @return
 	 */
-	@GetMapping("mypage")
-	public String mypage(Member member) {
-		//수정품에서 사용자가 입력한 정보를 member로 전달받음
-		//이름, 전화번호, 이메일, 주속
+	@PostMapping("mypage")
+	public String mypage(Member member, @AuthenticationPrincipal UserDetails user) {
+		//수정폼에서 사용자가 입력한 정보를 member로 전달받음
+		//이름, 전화번호, 이메일, 주소
 		//로그인한 ID를 읽어서 member객체에 추가저장
 		//서비스로 전달하여 DB의 내용 수정
+		member.setMemberid(user.getUsername());
+		service.update(member);
+		
 		return "redirect:/";
 	}
+	
+	
 
 }

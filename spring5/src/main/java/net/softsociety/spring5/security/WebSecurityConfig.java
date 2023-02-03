@@ -25,6 +25,7 @@ public class WebSecurityConfig {
         http.csrf().disable()
         .authorizeRequests()
         .antMatchers("/",
+        		"/thymeleaf",
         		"/member/join",
         		"/member/idcheck",
                 "/board/list",
@@ -42,6 +43,7 @@ public class WebSecurityConfig {
         .passwordParameter("memberpw")		//로그인폼의 비밀번호 입력란의 name
         .and()
         .logout()
+        .logoutUrl("/member/logout")
         .logoutSuccessUrl("/").permitAll()	//로그아웃시에 이동할 경로
         .and()
         .cors()

@@ -42,8 +42,21 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member getMember(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		Member member = dao.select(id);
+		return member;
 	}
+
+	@Override
+	public int update(Member member) {
+		//수정할 비밀번호 있으면 암호화
+		if (member.getMemberpw() != null && member.getMemberpw().length() != 0) {
+			String pw = encoder.encode(member.getMemberpw());
+			member.setMemberpw(pw);
+		}
+		int n = dao.update(member);
+		return n;
+	}
+	
+	
 
 }
