@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+</head>
+<body>
+<header>
+<h2>[ 게시판 글읽기 ]</h2>
+</header>
+<section>
+<form id="readForm" th:action="@{/board/read}" method="post">
+<table>
+<tr>
+	<th>작성자</th>
+	<td th:text="${Board.memberid}" class="center">
+	</td>
+</tr>
+<tr>
+	<th>작성일</th>
+	<td th:text="${Board.inputdate}" class="center">
+	</td>
+</tr>
+<tr>
+	<th>조회수</th>
+	<td th:text="${Board.hits}">
+	</td>
+</tr>
+<tr>
+	<th>제목</th>
+	<td th:text="${Board.title}">
+
+	</td>
+</tr>
+<tr>
+	<th>내용</th>
+	<td th:text="${Board.contents}" class="center"></td>
+</tr>
+<tr>
+	<th>파일첨부</th>
+	<td th:text="${Board.originalfile}"></td>
+</tr>
+
+</table>
+
+
+
+</form>
+</section>
+
+</body>
+</html>

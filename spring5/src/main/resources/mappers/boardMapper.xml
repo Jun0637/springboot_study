@@ -1,0 +1,62 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.softsociety.spring5.dao.BoardDAO">
+
+<!-- 글 저장 -->
+<insert id="insertboard" parameterType="Board">
+<!-- 전달된 파일명이 있을 때만 originalfile, savedfile컬럼에 값을 저장 -->
+<!-- 이럴때 동적SQL이 사용되는것임 -->
+	insert into Spring5_board
+		(
+			boardnum
+			, memberid
+			, title
+			, contents
+			<if test="originalfile != null and savedfile != null">
+			, originalfile
+			, savedfile
+			</if>
+		)
+	values
+		(
+			spring5_board_seq.nextval
+			, #{memberid}
+			, #{title}
+			, #{contents}
+			<if test="originalfile != null and savedfile != null">
+			, #{originalfile}
+			, #{savedfile}
+			</if>
+		)
+</insert>
+
+<!-- 글목록 -->
+<!-- *로 하지말고 뽑을 내용 적기, 글 나열할때 시간순서나 시퀀스 순서대로 필요한게 있으면 뒷단에서 해결 
+예를 들어 날짜 같은것 -->
+<select id="list" resultType="Board">
+	select 
+		boardnum
+		, memberid
+		, title
+		, hits
+		, to_char(inputdate, 'yy/mm/dd') inputdate
+	 from spring5_board order by boardnum desc
+</select>
+<!-- 글 클릭했을 때 읽어오기 -->
+<select id="selectboard" parameterType="int" resultType="Board">
+	select 
+		boardnum
+		, memberid
+		, title
+		, contents
+		, hits
+		, to_char(inputdate, 'yy/mm/dd') inputdate
+		, originalfile
+		, savedfile
+	 from spring5_board 
+	 where boardnum = #{boardnum}
+</select>
+
+</mapper>

@@ -4,45 +4,51 @@
 
 <mapper namespace="net.softsociety.spring5.dao.MemberDAO">
 
-<!-- 회원정보 저장 -->
 <insert id="insert" parameterType="Member">
-    insert into spring5_member (
-		memberid
-		, memberpw
-		, membername
-		, email
-		, phone
-		, address
-	) 
-    values (
-		#{memberid}
-		, #{memberpw}
-		, #{membername}
-		, #{email}
-		, #{phone}
-		, #{address}
-	)
+	insert into spring5_member (
+			memberid
+			,memberpw
+			,membername
+			,email		
+			,phone	
+			,address 
+		)
+	values 
+		(
+			#{memberid}
+			,#{memberpw}
+			,#{membername}
+			,#{email}		
+			,#{phone}
+			,#{address} 
+		)
 </insert>
 
 <select id="select" parameterType="string" resultType="Member">
 	select * from spring5_member where memberid = #{memberid}
 </select>
 
-<update id="update" parameterType="Member">
-	update 
-		spring5_member
-	set
+<select id="selectAll" resultType="Member">
+	select * from spring5_member 
+</select>
+
+<update id="updateMember" parameterType="Member" > 
+	update spring5_member 
+	set 
 		membername = #{membername}
-		, email = #{email}
-		, phone = #{phone}
-		, address = #{address}
+		,email=#{email}
+		,phone=#{phone} 
+		,address=#{address}
 		<if test="memberpw != null and memberpw != ''">
-		, memberpw = #{memberpw}
+		,memberpw =#{memberpw}
 		</if>
-	where
-		memberid = #{memberid}
+	where 
+		memberid = #{memberid} 
 </update>
 
-
+<delete id="delete" parameterType= "Member">
+	delete from spring5_member 
+	where memberid = #{memberid}
+</delete>
 </mapper>
 
