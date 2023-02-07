@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	table{
+	width : 50%;
+	border: 1px solid #444444;
+	border-collapse: collapse;
+	}
+	  th, td {
+    border: 1px solid #444444;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>[ 전체 회원 보기 ]</h1>
+
+<table>
+	<tr>
+		<th>아이디</th>
+		<th>이름</th>
+		<th>이메일</th>
+		<th>전화번호</th>
+		<th>주소</th>
+	</tr>
+	<tr th:each = "n:${list}"><!-- n,person변수는 아무거나, each  꼭 외우기!!!!*** -->
+		<td th:text="${n.memberid}"></td>
+		<td th:text="${n.membername}"></td>
+		<td th:text="${n.email}"></td>
+		<td th:text="${n.phone}"></td>
+		<td th:text="${n.address}"></td>
+	</tr>
+</table>
+</body>
+</html>

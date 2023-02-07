@@ -1,0 +1,61 @@
+--spring5 예제 테이블 구조
+
+--방명록 글 이름, 비번, 내용 저장할 테이블 생성 (list)
+create table spring5_member(
+	memberid	 VARCHAR2(20) PRIMARY KEY     	--사용자 식별 ID
+	,memberpw	 VARCHAR2(100) NOT NULL 		--비밀번호
+	,membername	 VARCHAR2(30) NOT NULL			--사용자 이름
+	,email		 VARCHAR2(50)  					--이메일 주소
+	,phone		 VARCHAR2(50)					--전화번호
+	,address     VARCHAR2(150)					--주소
+	,enabled	 number(1) DEFAULT 1			--계정 상태 (1-사용가능, 0-불가능)
+	,rolename	 VARCHAR2(20) DEFAULT 'ROLE_USER'--Role ('ROLE_USER' - 일반회원, 'ROLE_ADMIN' - 관리자)
+	
+);
+
+-- 저장 SQL구문 예 
+insert into spring5_member (memberid, memberpw, membername, email, phone, address)
+values ('aaa','111','김영희','aaa@aaa','010-1111-1111','서울시 강남구 삼성동111');
+
+--삭제 
+<delete id= "deleteBook" parameterType= "int">
+	delete from person where num = #{num};
+</delete>
+
+--전체조회
+	select * from guestbook;
+	
+	
+-- 게시판 글 정보 테이블
+create table spring5_board(
+	boardnum	number primary key,	--글번호
+	memberid	varchar2(20) references spring5_member(memberid),	--작성자 아이디
+	title		varchar2(300) not null,		--글 제목 
+	contents	varchar2(3000) not null,	--글 본문내용
+	inputdate	date default sysdate,		--작성일
+	hits 		number default 0,			--조회수
+	originalfile	varchar2(300),			--첨부파일 원래이름
+	savedfile		varchar2(100)			--첨부파일이 서버에 저장된 이름
+);
+
+--게시판 글번호에 사용할 시퀀스
+create sequence spring5_board_seq;
+
+-- 글 저장 예 
+insert into spring5_board (boardnum, memberid, title, contents)
+values (spring5_board_seq.nextval,'applemail','테스트','테스트');
+
+--리플 테이블
+create table spring5_reply(
+	replynum	number primary key,	--댓글 번호
+	boardnum 	number references spring5_board(boardnum) on delete cascade, --본문 글번호
+	memberid	varchar2(20) references spring5_number(memberid), --작성자 아이디
+	replytext	varchar2(200) not null,	--댓글 내용
+	inputdate	date default sysdate	--작성일
+);
+
+--리플 번호에 사용할 시퀀스
+create sequence spring5_reply_seq;
+
+--리플 작성 예
+3

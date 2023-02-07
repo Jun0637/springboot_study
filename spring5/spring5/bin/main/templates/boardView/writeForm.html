@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+</head>
+<body>
+<header>
+<h2>[ 글쓰기 ]</h2>
+</header>
+<section>
+
+<!-- 사랑하는 지희야 잊어버리지말래 enctype 이거 .. 빼먹는데..ㅋㅋ -->
+
+<form id="writeForm" th:action="@{/board/write}" method="post"
+	enctype="multipart/form-data">
+<table>
+<tr>
+	<th>제목</th>
+	<td>
+		<input type="text" name="title" id="title"  style="width:400px">
+	</td>
+</tr>
+<tr>
+	<th>내용</th>
+	<td><textarea name="contents" id="contents" ></textarea></td>
+</tr>
+<tr>
+	<th>파일첨부</th>
+	<td>
+	<input type="file" name="upload">
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="white center">
+		<input type="submit" value="저장">
+	</td>
+</tr>
+</table>
+<br>
+
+
+
+</form>
+</section>
+
+</body>
+</html>
