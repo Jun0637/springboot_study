@@ -1,8 +1,10 @@
 package net.softsociety.spring5.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.RowBounds;
 
 import net.softsociety.spring5.domain.Board;
 
@@ -17,5 +19,7 @@ public interface BoardDAO {
 	//글 삭제
 	public int deleteboard(Board board);
 	//전체 글 조회
-	public ArrayList<Board> list();
+	public ArrayList<Board> list(HashMap<String, String> map, RowBounds r);
+	
+	public int add(int num);
 }

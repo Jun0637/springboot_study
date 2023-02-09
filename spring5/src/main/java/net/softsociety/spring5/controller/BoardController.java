@@ -1,6 +1,12 @@
 package net.softsociety.spring5.controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,6 +14,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,8 +46,8 @@ public class BoardController {
 	@GetMapping("/list")
 	//가서 출력하고 끝내는 것은 model에 담는다. 
 	//복잡하게 하면 세션이 넣어야한다. 
-	public String list(Model model) {
-		ArrayList<Board> list = service.list();
+	public String list(String type, String searchWord, Model model) {
+		ArrayList<Board> list = service.list(type, searchWord );
 		model.addAttribute("list", list);
 		
 		for(Board n : list) {
@@ -86,7 +93,7 @@ public class BoardController {
 		
 		//DB에 저장
 		service.insertboard(board);
-		   log.debug("이거되남2");
+		   log.debug("");
 		return "redirect:/board/list";
 	}
 	//글 클릭해서 읽기
@@ -105,4 +112,56 @@ public class BoardController {
 		//HTML파일로 포워딩하여 출력
 		return "boardView/readForm";
 	}
+	
+	//첨부파일 다운로드
+	@GetMapping("/download")
+	public String download(
+			@RequestParam(name = "num", defaultValue="0") int num,
+			HttpServletResponse response) {
+		
+		Board board = service.selectboard(num);
+		
+		log.debug("selectboard:{}", board);
+		
+		
+		if(board == null || board.getSavedfile() == null) {
+			return "redirect:/list";
+		}
+		String file = uploadPath + "/" + board.getSavedfile();
+		
+		FileInputStream in = null;
+		ServletOutputStream out = null;
+		
+		try {
+		
+		//응답 정보의 헤더 세팅
+		response.setHeader("Content-Disposition", 
+		" attachment;filename=" + URLEncoder.encode(board.getOriginalfile(),"UTF-8"));
+		in = new FileInputStream(file);
+		out = response.getOutputStream();
+		
+		//in으로 읽어서 out으로 내보내라
+		FileCopyUtils.copy(in, out);
+		
+		in.close();
+		out.close();
+		
+		}
+		catch(IOException e) {
+			//예외 메세지 출력
+			e.printStackTrace();
+		}
+		return "redirect:/";
+	}
+	//글 삭제
+	//@GetMapping("delete")
+	//public String delete(int num) {
+		//글 읽기 화면에서 글번호가 전달됨s
+		//로그인한 사용자의 아이디를 읽음
+		//글번호로 DB에서 글 내용을 읽음
+		//첨부된 파일이 있으면 파일 삭제
+		//실제 글 DB에서 작제
+		//글 목록으로 리다이렉트
+	//}
+	
 }

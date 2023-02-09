@@ -40,11 +40,18 @@
 </tr>
 <tr>
 	<th>파일첨부</th>
-	<td th:text="${Board.originalfile}"></td>
+	<td><a th:text="${Board.originalfile}" th:href="@{/board/download(num=${Board.boardnum})}"></a>
+	<img th:src="@{/board/download(num=${Board.boardnum})}">
+	</td>
 </tr>
 
 </table>
-
+<!-- 
+<div th:if="${#authentication.name} == ${board.memberid}">
+	<a th:href="@{/board/update(boardnum=${board.boardnum})}">수정</a>
+	<a th:href="|javascript:deleteBoard(${board.boardnum})|">삭제</a>
+</div>
+ -->
 
 
 </form>

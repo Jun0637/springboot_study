@@ -21,7 +21,11 @@ public interface BoardService {
 	public int updateboard(Board board);
 	//글 삭제
 	public int deleteboard(Board board);
+	//글 개수
+	public int total();
 	//전체 글 조회
-	public ArrayList<Board> list();
+	public ArrayList<Board> list(String type, String searchWord);
+	
+	public Board read(int num); 
 
 }
