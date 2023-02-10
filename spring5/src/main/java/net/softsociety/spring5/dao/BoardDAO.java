@@ -20,6 +20,8 @@ public interface BoardDAO {
 	public int deleteboard(Board board);
 	//전체 글 조회
 	public ArrayList<Board> list(HashMap<String, String> map, RowBounds r);
-	
+	//조회수 1 증가
 	public int add(int num);
+	//글 개수
+	public int total(HashMap<String, String> map);
 }

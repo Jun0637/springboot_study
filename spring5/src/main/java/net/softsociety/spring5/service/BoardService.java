@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 
 import net.softsociety.spring5.domain.Board;
+import net.softsociety.spring5.util.PageNavigator;
 
 
 /**
@@ -24,8 +25,11 @@ public interface BoardService {
 	//글 개수
 	public int total();
 	//전체 글 조회
-	public ArrayList<Board> list(String type, String searchWord);
+	public ArrayList<Board> list(int start, int count, String type, String searchWord);
 	
 	public Board read(int num); 
+	//페이지 객체정보 생성
+	public PageNavigator getPageNavigatpor(int pagePerGroup, int countPerPage,
+			int page, String type, String searchWord);
 
 }

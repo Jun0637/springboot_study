@@ -24,7 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.spring5.domain.Board;
 import net.softsociety.spring5.service.BoardService;
-import net.softsociety.spring5.util.FileService.FileService;
+import net.softsociety.spring5.util.FileService;
+import net.softsociety.spring5.util.PageNavigator;
 
 /**
  * 게시판 관련 처리 콘트롤러
@@ -42,13 +43,32 @@ public class BoardController {
 	@Value("${spring.servlet.multipart.location}")
 	String uploadPath;
 	
+	//패이지당 글 수
+	@Value("${user.board.page}")
+	int countPerPage;
+
+	//패이지 이동 링크 수
+	@Value("${user.board.group}")
+	int pagePerGroup;
+	
 	//글목록
 	@GetMapping("/list")
 	//가서 출력하고 끝내는 것은 model에 담는다. 
 	//복잡하게 하면 세션이 넣어야한다. 
-	public String list(String type, String searchWord, Model model) {
-		ArrayList<Board> list = service.list(type, searchWord );
+	public String list(
+			@RequestParam(name="page", defaultValue = "1")
+			int page
+			, String type
+			, String searchWord
+			, Model model) {
+		PageNavigator navi = service.getPageNavigatpor(pagePerGroup, countPerPage,
+				page, type, searchWord);
+		ArrayList<Board> list = service.list(navi.getStartPageGroup(), countPerPage, type, searchWord );
+		
 		model.addAttribute("list", list);
+		model.addAttribute("navi", navi);
+		model.addAttribute("type", type);
+		model.addAttribute("searchWord", searchWord);
 		
 		for(Board n : list) {
 			log.debug("출력 : {}",n);

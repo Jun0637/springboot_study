@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import net.softsociety.spring5.dao.BoardDAO;
 import net.softsociety.spring5.domain.Board;
+import net.softsociety.spring5.util.PageNavigator;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -46,13 +47,14 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public ArrayList<Board> list(String type, String searchWord) {
+	public ArrayList<Board> list(int start, int count, String type, String searchWord) {
+		//검색 대상ㅎ과 검색어
 		HashMap<String, String> map = new HashMap<>();
 		map.put("type", type);
 		map.put("searchWord", searchWord);
 		
 		//조회 결과 중 위치, 개수 지정
-		RowBounds rb = new RowBounds(0, 10);
+		RowBounds rb = new RowBounds(start, count);
 		
 		ArrayList<Board> list = dao.list(map, rb);
 		return list;
@@ -71,6 +73,20 @@ public class BoardServiceImpl implements BoardService {
 	public int total() {
 		RowBounds rb = new RowBounds(4, 10);
 		return 0;
+	}
+
+	@Override
+	public PageNavigator getPageNavigatpor(int pagePerGroup, int countPerPage,
+			int page, String type, String searchWord) {
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("type", type);
+		map.put("searchWord", searchWord);
+		
+		int t = dao.total(map);
+		
+		PageNavigator navi = new PageNavigator(pagePerGroup ,countPerPage,page, t);
+		return navi;
 	}
 	
 	

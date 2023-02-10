@@ -66,8 +66,26 @@
 	 	boardnum desc
 </select>
 <!-- 전체 글 개수 -->
-<select id="total" resultType="int">
+<select id="total" parameterType="map" resultType="int">
 	select count(*) from spring5_board
+	<if test="type != null and searchWord != null">
+	 <where>
+	 	<if test="type == 'title'">
+	 		upper(title) like '%' || upper(#{searchWord}) || '%'
+	 	</if>
+	 	<if test="type == 'contents'">
+	 		upper(contents) like '%' || upper(#{searchWord}) || '%'
+	 	</if>
+	 	<if test="type == 'memberid'">
+	 		memberid = #{searchWord}
+	 	</if>
+	 	<if test="type == 'all'">
+	 	upper(title) like '%' || upper(#{searchWord}) || '%'
+	 	or upper(contents) like '%' || upper(#{searchWord}) || '%'
+	 	or memberid = #{searchWord} || '%' 
+	 	</if>
+	 </where>
+	 	</if>
 </select>
 <!-- 글 클릭했을 때 읽어오기 -->
 <select id="selectboard" parameterType="int" resultType="Board">
