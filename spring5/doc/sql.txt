@@ -19,12 +19,12 @@ values ('aaa','111','홍길동','aaa@aaa.com','010-1111-1111','서울시 강남�
 
 -- 게시판 글 정보 테이블
 create table spring5_board (
-	boardnum	number primary key,			--글번호
-	memberid	varchar2(20) references spring5_member(memberid),	--작성자 아이디
-	title		varchar2(300) not null,		--글 제목
-	contents	varchar2(3000) not null,	--글 본문내용
-	inputdate 	date default sysdate,		--작성일
-	hits		number default 0,			--조회수
+	boardnum	number primary key,			-- 글번호
+	memberid	varchar2(20) references spring5_member(memberid),	-- 작성자 아이디
+	title		varchar2(300) not null,		-- 글 제목
+	contents	varchar2(3000) not null,	-- 글 본문내용
+	inputdate 	date default sysdate,		-- 작성일
+	hits		number default 0,			-- 조회수
 	originalfile	varchar2(300),			-- 첨부파일 원래이름
 	savedfile		varchar2(100)			-- 첨부파일이 서버에 저장된 이름
 );

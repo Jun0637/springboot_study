@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>spring5</title>
@@ -8,22 +8,20 @@
 <body>
 <h1>[ spring5 ]</h1>
 
-<!-- 로그인 되어있을 때만 나타남 -->
-<p sec:authorize="isAuthenticated()">로그인 중</p>
+<div sec:authorize="isAuthenticated()">
+	<span sec:authentication="name"></span>
+	님 로그인 중
+</div>
 
-<!--http://localhost8884/spring5/member/join-->
+<!-- http://localhost:8888/spring5/member/join -->
 
-<p sec:authorize="not isAuthenticated()"><a th:href="@{/member/join}" >회원가입</a></p>
+<p sec:authorize="not isAuthenticated()"><a th:href="@{/member/join}">회원가입</a></p>
 <p sec:authorize="not isAuthenticated()"><a th:href="@{/member/loginForm}">로그인</a></p>
-<p sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}" >로그아웃</a></p>
+<p sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}">로그아웃</a></p>
 <p sec:authorize="isAuthenticated()"><a th:href="@{/member/mypage}">개인정보수정</a></p>
-<p sec:authorize="isAuthenticated()"><a th:href="@{/member/delete}">회원탈퇴</a></p>
-<p sec:authorize="isAuthenticated()"><a th:href="@{/member/selectAll}">전체회원목록</a></p>
 <p><a th:href="@{/board/list}">게시판</a></p>
 
 <p><a th:href="@{/thymeleaf}">Security 관련 Thymeleaf</a></p>
-
-
 
 </body>
 </html>
