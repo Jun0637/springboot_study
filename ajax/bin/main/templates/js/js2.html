@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js2</title>
+<script>
+	function test1(){
+		console.log('a = ' + a);
+		//console.log('b = ' + b);
+		//console.log('c = ' + c);
+		
+		var a = 1;
+		let b = 2;
+		const c =3;
+		
+		console.log('a = ' + a);
+		console.log('b = ' + b);
+		console.log('c = ' + c);
+		
+		var a = 4;
+		//let b = 5; 재선언 불가
+		//const c =6; 재선언 불가
+		
+		a = 7;
+		b = 8;
+	//	c = 3; 재할당  불가
+	}
+	function test2(){
+		let a = 10;
+		let b = "12.3";
+		let c = "abcd";
+		
+		console.log(typeof(a)); // typeof 가로안에있는 함수들의 출력
+		console.log(typeof(b));
+		console.log(a+3);
+		console.log(b+3);
+		console.log(a+Number(b));
+		
+		console.log(isNan(a)); // 매개변수가 숫자인지 검사하는 함수(NaN은 Not a Number)
+		console.log(isNan(b));
+		console.log(isNan(c));
+		
+	}
+	function test3(){
+		alert('alert');
+		let res = confirm('confirm');
+		console.log(res);
+		
+		let str = prompt('prompt');
+		console.log(str);
+	}
+</script>
+</head>
+<body>
+<header>
+	<h1>[ 기본 문법 ]</h1>
+</header>
+<section>
+	<p><a href="javascript:test1()">변수 선언</a></p>
+	<p><a href="javascript:test2()">자료형</a></p>
+	<p><a href="javascript:test3()">대화상자</a></p>
+	<p><a href="javascript:"></a></p>
+	<div id="output"></div>
+</section>
+</body>
+</html>

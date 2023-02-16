@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js1</title>
+<script>
+	alert("head1:" + document.getElementById("output"));
+	
+	window.onload = function(){
+		alert("onload:" + document.getElementById("output"));
+		
+		let bt = document.getElementById("bt");
+		bt.onclick = test;
+	};
+	
+	function test(){
+		alert('alert로 대화상자 띄우기');
+		console.log('콘솔에 출력');
+	}
+</script>
+</head>
+<body>
+<script>alert("body1:" + document.getElementById("output"));</script>
+<header>
+	<h1>[JavaScript 실행]</h1>
+</header>
+<section>
+	<p><a href="javascript:test()">함수 호출</a></p>
+	<p><input type="button" value="함수 호출 " onclick="test()"></p>
+	<p><input type="button" value="함수 호출2" id="bt"></p>
+	<div id="output">div영역</div>
+</section>
+<script>alert("body2:" + document.getElementById("output"));</script>
+</body>
+</html>
