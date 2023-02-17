@@ -1,13 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>spring0</title>
+<title>js3</title>
+<script>
+window.onload = function(){
+	document.getElementById("add").onclick = function(){
+		let x = document.getElementById("x").value;
+        let y = document.getElementById("y").value;
+        if(isNaN(x) || isNaN(y)){
+            alert("숫자입력해주세요")
+            return;
+        }
+        let c = parseInt(x) + parseInt(y);
+        document.getElementById("result").value = c;
+    }
+
+}
+
+</script>
 </head>
 <body>
-	<h1>[js4]</h1>
-	<ul>
-		<li><a th:href="@{/javascript/js4}"></a></li>
-	</ul>
+<header>
+	<h1>[객체]</h1>
+</header>
+<section>
+	<label id="num">num : </label>
+    <input id="x" type="text" placeholder="">
+    <input id="y" type="text" placeholder="">
+    <input id="add" type="button" onclick="" value="=">
+    <input id="result" type="text">
+</section>
 </body>
 </html>
