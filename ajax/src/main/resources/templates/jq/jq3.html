@@ -12,50 +12,21 @@ $(document).ready(function(){
 	$('#button2').on('click', buttonOff);
 	$('#button3').on('click', buttonOn);
 	$('#button4').on('click', buttonTrigger);
-	$('#button5').on('click', function(){
-		setTimeout(function(){
-			$('#button1'),trigger('click');
-		}, 3000);
-	});
-	$('#img1,#img2').on('mouseenter', function(){
-		let w = $(this).width();
-		let h = $(this).height();
-		$(this).css('width', w * 2);
-		$(this).css('height', w * 2);
-	});
-	
-	$('#img1,#img2').on('mouseleave', function(){
-		let w = $(this).width();
-		let h = $(this).height();
-		$(this).css('width', w / 2);
-		$(this).css('height', w / 2);
-	});
-	
-	$('#img3').on('mouseleave', function(){
-		let w = $(this).width();
-		let h = $(this).height();
-		$(this).css('width', w + 10);
-		$(this).css('height', w + 10);
-	});
-	$('input[type=text]').on('focus',function(){
-		$(this).css('text', 'pink');
-	})
 });
 function buttonClick(){
 	alert("button1 클릭함");
 }
 function buttonOff(){
-	$('#button1').off();
+	$('button1').off();
 	//$('button1').off('click'));
 	//$('button1').off('click', buttonClick);
 }
 function buttonOn(){
-	$('#button1').on('click', buttonClick);
+	$('button1').on('click', buttonClick);
 }
 function buttonTrigger(){
 	$('#button1').trigger('click');
 }
-
 
 </script>
 </head>
@@ -67,13 +38,5 @@ function buttonTrigger(){
 	<p><input type="button" value="이벤트 강제 발생" id="button4"></p>
 	<p><input type="button" value="일정시간 후에 이벤트 강제 발생" id="button5"></p>
 	<p><input type="button" value="일정시간 간격으로 이벤트 강제 발생" id="button5"></p>
-	
-	<p><img th:src="@{/img/img1.png}" id="img1"></p>
-	<p><img th:src="@{/img/img2.jpg}" id="img2"></p>
-	<p><img th:src="@{/img/img3.jpg}" id="img3"></p>
-	
-	ID<input type="text">
-	PW<input type="text">
-	<input type="submit" name="button" value="버튼">
 </body>
 </html>
