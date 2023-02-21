@@ -1,10 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script th:src="@{/js/jquery-3.6.3.js}"></script>
+<script>
+//이미지 파일 명들이 저장된 배열
+//현재 사용한 배열 요소 인덱스
+$(document).ready(function(){
+	$('#bt1').on('click', function(){
+		let s = $('h3').html();
+		console.log(s);
+		
+		$('h3').each(function(i, ob){
+			console.log(ob);
+		});
+	});
+	
+	$('#bt2').on('click', function(){
+		let s = $('h3').text();
+		console.log(s);
+	});
+	
+	$('#bt3').on('click', function(){
+		let s = $('#text1').val();
+		console.log(s);
+	});
+	
+	$('#bt4').on('click', function(){
+		$('h3').each(function(i, ob){
+			$(ob).html('<b>변경</b>된<id>문자</i>열');
+		});
+		
+		$('#text1').val('추가 입력');
+	});
+	$('#bt5').on('click', function(){
+		$('#div1').html('<p>바꾼 내용</p>');
+		$('#div1').css('color', 'blue');
+		$('#div1').css('background', 'gray');
+		$('#div1').css('width', 300);
+		$('#div1').css('height', 300);
+	});
+	$('#bt6').on('click', function(){
+		$('#div2').html('<p>바꾼 내용</p>');
+		$('#div2').addClass('css1');
+	});
+	
+	$('#bt7').on('click', function(){
+		$('#div2').removeClass('class');
+	});
+	
+	$('#bt8').on('click', function(){
+		alert($('#img1').attr('src'));
+		$('#img1').attr('src','../img/img2.jpg');
+	});
+	
+	$('#img1').on('mouseleave', function(){
+		let w = $(this).width();
+		let h = $(this).height();
+		$(this).css('width', w + 10);
+		$(this).css('height', w + 10);
+		});
+	});	
+});
+</script>
+<style>
+.css{
+	color:blue;
+	background:gray;
+	width:300px;
+	height:300px;
+}
+</style>
 </head>
 <body>
-
+	<h1>[문서 조작 함수]</h1>
+	<p><input type="button" id="bt1" value="html() 함수"></p>
+	<p><input type="button" id="bt2" value="text() 함수"></p>
+	<p><input type="button" id="bt3" value="val() 함수"></p>
+	<p><input type="button" id="bt4" value="값 변경하기"></p>
+	
+	<h3><b>h3</b>태그를 사용한 문자열1</h3>
+	<h3><b>h3</b>태그를 사용한 문자열2</h3>
+	<p><input type="text" id="text1">
+	<p><textarea>aa</textarea>
+	
+	<!-- 배경색 회색, 가로크기 300px, 세로킈 100px, 글자색 6파랑의 단락으로 변경 -->
+	<p><input type="button" id="bt5" value="아래 역역 변경"></p>
+	<div id="div1">원래있던 내용</div>
+	
+	<p><input type="button" id="bt6" value="아래 역역 변경"></p>
+	<div id="div2">원래있던 내용</div>
+	
+	<p><input type="button" id="bt8" value="이미지 바꾸기"></p>
+	<div ><img src="../img/img1.png" id="img1"></div>
+	
+	<p><input type="button" id="bt9" value="이미지 바꾸기"></p>
+	<div ><img src="../img/img1.png" id="img1"></div>
 </body>
 </html>

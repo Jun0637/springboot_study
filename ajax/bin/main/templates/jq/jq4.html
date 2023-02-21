@@ -1,10 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script th:src="@{/js/jquery-3.6.3.js}"></script>
+<script>
+$(document).ready(function(){
+	$('#bt1').on('click', test1);
+	$('#bt2').on('click', test2);
+	$('#bt3').on('click', test3);
+	$('#bt4').on('click', test4);
+});
+
+function test1(){
+	let a = [];
+	let b = new Array();
+	let c = new Array(3);
+	let d = [10,20,30];
+	
+	alert(d);
+	console.log(d);
+	console.log(c);
+	
+	console.log(d[0]);
+	console.log(d.length);
+	d[0] = 99;
+	console.log(d);
+	d[4] = 111;
+	console.log(d);
+	d.push(22);
+	console.log(d);
+	d.pop();
+	console.log(d);
+	d.reverse();
+	console.log(d);
+}
+
+function test2(){
+	let ar = [4,2,5,4,9];
+	
+	$.each(ar, function(i, n){
+		console.log('i=' +  i + ', n=' + n);
+	});
+}
+function test3(){
+	let ar = ['aaa','bbb','ccc','ddd'];
+	$(ar).each(function(i , n){
+		console.log(n);
+	});
+}
+function test4(){
+	let ar = [{num:10, id:'aaa', title:'제목1]'},
+		{num:20, id:'bbb', title:'제목2]'},
+		{num:30, id:'ccc', title:'제목3]'}];
+	
+	$.each(ar, function(i, ob){
+		console.log(ob.id + ',' + ob.title);
+	});
+}
+</script>
 </head>
 <body>
-
+<h1>[배열]</h1>
+<p><input type="button" id="bt1" value="배열 사용"></p>
+<p><input type="button" id="bt2" value="each() 함수1"></p>
+<p><input type="button" id="bt3" value="each() 함수2"></p>
+<p><input type="button" id="bt4" value="each() 함수 - 객체 배열"></p>
 </body>
 </html>
