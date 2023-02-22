@@ -1,0 +1,68 @@
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>jq6</title>
+<script th:src="@{/js/jquery-3.6.3.js}"></script>
+<script>
+//이미지 파일 명들이 저장된 배열
+//현재 사용한 배열 요소 인덱스
+$(document).ready(function(){
+	//show(), hide(), toggle(), slideDown(), slideUp(), fadeIn(), fadeOut()
+	$('#b1').click(function(){
+		$('#textDiv').show('slow');
+	});
+	
+	$('#b2').click(function(){
+		$('#textDiv').hide('slow');
+	});
+	
+	$('#b3').click(function(){
+		$('#textDiv').toggle('slow');
+	});
+	
+	$('#b4').click(function(){
+		$('#textDiv').slideDown('slow');
+	});
+	
+	$('#b5').click(function(){
+		$('#textDiv').slideUp('slow');
+	});
+	
+	$('#b6').click(function(){
+		$('#textDiv').fadeIn('slow');
+	});
+	
+	$('#b7').click(function(){
+		$('#textDiv').fadeOut('slow');
+	});
+});
+</script>
+<style>
+div {
+	border : 2px solid black;
+	background : blue;
+	color : yellow;
+	font-size: 30px;
+	width: 400px;
+	}
+</style>
+</head>
+<body>
+<header>
+	<h1>[애니메이션 사용]</h1>
+	<input type="button" id="b1" value="show">
+	<input type="button" id="b2" value="hide">
+	<input type="button" id="b3" value="toggle">
+	<input type="button" id="b4" value="slideDown">
+	<input type="button" id="b5" value="slideUp">
+	<input type="button" id="b6" value="fadeIn">
+	<input type="button" id="b7" value="fadeOut">
+	<div id="textDiv">
+	<p>zzzzz</p>
+	<p>zzzzz</p>
+	<p>zzzzz</p>
+	</div>
+</header>
+</body>
+</html>

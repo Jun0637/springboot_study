@@ -34,4 +34,9 @@ public class JQueryController {
 	public String jq5() {
 		return "jq/jq5";
 	}
+	
+	@GetMapping("jq6")
+	public String jq6() {
+		return "jq/jq6";
+	}
 }

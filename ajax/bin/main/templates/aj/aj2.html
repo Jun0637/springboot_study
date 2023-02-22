@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>aj1</title>
+<script th:src="@{/js/jquery-3.6.3.js}"></script>
+<script>
+$(document).ready(function(){
+	$('#submit1').click(formSubmit1);
+	$('#submit2').click(formSubmit2);
+});
+
+function formSubmit1(){
+	let n = $('#name1').val();
+	let a = $('#age1').val();
+	let p = $('#phone1').val();
+	
+	if(n == ''){
+		alert('이름을 입력하세요');
+		return;
+	}
+	
+	if(a == '' || isNaN(a)){
+		alert('나이를 숫자로 입력하세요');
+		return;
+	}
+	
+	$.ajax({
+		url: 'insert1',
+		type:'post',
+		data: {name1: n, age1: a, phone1: p},
+		success: function(){
+			alert('저장 굿');
+		},
+		error: function(){
+			alert('저장 실패');
+		}
+		
+	});
+}
+	function formSubmit2(){
+		let n = $('#name').val();
+		let a = $('#age').val();
+		let p = $('#phone').val();
+		
+		if(n == ''){
+			alert('이름을 입력하세요');
+			return;
+		}
+		
+		if(a == '' || isNaN(a)){
+			alert('나이를 숫자로 입력하세요');
+			return;
+		}
+		
+		$.ajax({
+			url: 'insert2',
+			type:'post',
+			data: $('#form2').serialize(),
+			success: function(){
+				alert('저장 굿');
+			},
+			error: function(){
+				alert('저장 실패');
+			}
+			
+		});
+}
+</script>
+</head>
+<body>
+	<h2>[Ajax 객체 보내기/받기]</h2>
+	<p>1. 서버로 각각의 Parameter를 전달</a>
+	<form>
+	이름<input type="text" id="name1"><br>
+	나이<input type="number" id="age1"><br>
+	전화<input type="text" id="phone1"><br>
+		<input type="button" id="submit1" value="저장">
+	</form>
+	
+	<p>2. 폼의 전체 내용을 전송</a>
+	<form id ="form2">
+	이름<input type="text" id="name" name="name"><br>
+	나이<input type="number" id="age" name="age"><br>
+	전화<input type="text" id="phone" name="phone"><br>
+		<input type="button" id="submit2" value="저장">
+	</form>
+</body>
+</html>
