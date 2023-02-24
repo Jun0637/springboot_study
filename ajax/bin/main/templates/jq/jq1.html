@@ -1,44 +1,44 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="UTF-8">
 <title>jq1</title>
 <script th:src="@{/js/jquery-3.6.3.js}"></script>
 <script>
-$(document).ready(function(){
+$(document).ready(function() {
 	//태그 선택자
-	$('h1').css('color', 'green');
-	$('h3').css('color', 'green');
+	$('p').css('color', 'green');
 	//클래스 선택자
-	$('.blue').css('color', 'yellow'); // .blue라고 하면 blye 라른 class명들이 다바뀜
+	$('p.blue').css('color', 'blue');
 	//아이디 선택자
-	$('#a').css('color', 'red'); //# ID
-	$('h4,h5').css('color', 'blue');
-	$('div p').css('color', 'Teal');
-	//$('input[type=password]').css('background', 'yellow');
+	$('#red').css('color', 'red');
+	$('h2,h3,h4').css('color', 'yellow');
+	$('div p').css('color', 'pink');
+	//속성 선택자
+	$('input[type=password]').css('background', 'yellow');
 	//$('input:password').css('background', 'yellow');
+});
 </script>
 </head>
 <body>
-<header>
-	<h1>[jQuery 사용]</h1>
-</header>
-<section>
-	<p>jQuery 사용연습</p> 
-	<p class="blue">jQuery 사용연습</p>
-	<p id="a">jQuery 사용연습</p>
+	<h1>[ jQuery 사용 ]</h1>
+	<p class="blue">jQuery 사용하기 연습입니다.</p>
+	<p>jQuery 사용하기 연습입니다.</p>
+	<p>jQuery 사용하기 연습입니다.</p>
+	<p id="red">jQuery 사용하기 연습입니다.</p>
 	<h2 class="blue">h2태그</h2>
-	<h3>h3태그</h3>
-	<h4>h4태그</h4>
-	<h5>h5태그</h5>
+	<h3>h3태그</h2>
+	<h4>h4태그</h2>
 	<div>
-		<p>div 내의 p태그</p>
+		<p>div태그 내의 p태그</p>
 	</div>
 	<form>
 		<input type="text">
 		<input type="password">
 		<input type="submit">
 	</form>
-</section>
+	
 </body>
 </html>
+

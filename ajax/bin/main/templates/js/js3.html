@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="UTF-8">
 <title>js3</title>
 <script>
 let win = null;
-function test1(){
-	win = window.open('', 'w', 'left=300,top=100,,width=500,height=400location=yes');
+
+function test1() {
+	win = window.open('', 'w', 'left=300,top=100,width=500,height=400,location=yes');
 }
-function test2(){
-	if(win != null && !win.closed){
-	win.close();
+function test2() {
+	if (win != null && !win.closed) {
+		win.close();
 	}
 }
-function test3(){
-	//win이 null이 아니고, 창이 열려잇으면
-	//창이 크키와 위치 변경하고 맨 앞으로 활성화
+function test3() {
+	//win이 null이 아니고, 창이 열려있으면
+	//창 크기와 위치 변경하고 맨 앞으로 활성화
 }
-function test4(){
+function test4() {
 	let w = screen.width;
 	let h = screen.height;
-	alert('가로:' + w +', 세로:' + h); // 창의 크기 나옴
+	alert('가로:' + w + ', 세로:' + h);
 }
-function test5(){
-	alert(location.href);//현재 경로가 나옴
-	location.href = 'https://www.naver.com/'; //링크걸면 이주소로감
+function test5() {
+	alert(location.href);
+	location.href = 'http://www.naver.com';
 }
-function test6(){
-	history.go(-1); // -1 지나온 경로 전 +는 앞 	
+function test6() {
+	history.go(-1);
 }
-function test7(){
-	alert(navigator.userAgent); //브라우저의 종류와 버전 등 웹브라우저 전반에 대한 정보를 제공하는 객체
-	if(){
-		location.href=
+function test7() {
+	alert(navigator.userAgent);
+	if () {		//"Android" 포함되어있으면 다른 페이지로 이동
+		
 	}
 }
-
-
 </script>
 </head>
 <body>
 <header>
-	<h1>[객체]</h1>
+	<h1>[ 객체 ]</h1>
 </header>
 <section>
-	<p><a href="javascript:test1()">window 객체 - 창 열기</a>
-	<p><a href="javascript:test2()">window 객체 - 창 닫기</a>
-	<p><a href="javascript:test3()">window 객체 - 창 크기, 위치 변경</a>
-	<p><a href="javascript:test4()">screen 객체 - </a>
-	<p><a href="javascript:test5()">location 객체 - </a>
-	<p><a href="javascript:test6()">history 객체 - </a>
-	<p><a href="javascript:test7()">navigator 객체 - </a>
+	<p><a href="javascript:test1()">window 객체 - 창 열기</a></p>
+	<p><a href="javascript:test2()">window 객체 - 창 닫기</a></p>
+	<p><a href="javascript:test3()">window 객체 - 창 크기, 위치 변경</a></p>
+	<p><a href="javascript:test4()">screen 객체</a></p>
+	<p><a href="javascript:test5()">location 객체</a></p>
+	<p><a href="javascript:test6()">history 객체</a></p>
+	<p><a href="javascript:test7()">navigator 객체</a></p>
 </section>
 </body>
 </html>

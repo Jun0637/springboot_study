@@ -1,35 +1,97 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>js3</title>
-<script>
-window.onload = function(){
-	document.getElementById("add").onclick = function(){
-		let x = document.getElementById("x").value;
-        let y = document.getElementById("y").value;
-        if(isNaN(x) || isNaN(y)){
-            alert("숫자입력해주세요")
-            return;
-        }
-        let c = parseInt(x) + parseInt(y);
-        document.getElementById("result").value = c;
-    }
-
+<title>JavaScript</title>
+<style>
+input[type=text] {
+	width: 50px;
+	text-align: center;
 }
+div {
+	width: 300px;
+	border: 1px solid black;
+	text-align: center;
+}
+li {
+	padding: 10px;
+}
+</style>
+<script>
+//계산기
+function calc() {
+	let num1 = document.getElementById('num1');
+	let num2 = document.getElementById('num2');
+	let num3 = document.getElementById('num3');
+	let op = document.getElementById('op');
+	
+	//alert(op.selectedIndex);
+	//op.selectedIndex = 0;
+	
+	if (num1.value == '' || isNaN(num1.value)) {
+		alert('숫자를 입력하세요.');
+		num1.focus();
+		num1.select();
+		return;
+	}
+	if (num2.value == '' || isNaN(num2.value)) {
+		alert('숫자를 입력하세요.');
+		num2.focus();
+		num2.select();
+		return;
+	}
+	
+	let res = 0;
+	switch (op.value) {
+		case '+' : res = Number(num1.value) + Number(num2.value); break;
+		case '-' : res = Number(num1.value) - Number(num2.value); break;
+		case '*' : res = Number(num1.value) * Number(num2.value); break;
+		case '/' : 
+			if (num2.value == 0) {
+				alert('0으로 나눌 수 없습니다.');
+				return;
+			}
+			res = Number(num1.value) / Number(num2.value); break;
+	}
+	num3.value = res;
+	
+}
+function focusIn(text) {
+	console.log(text.value);
+	text.focus();
+	text.select();
+	return false;
+}
+
 
 </script>
 </head>
 <body>
 <header>
-	<h1>[객체]</h1>
+	<h2>[ 계산하기 ]</h2>
 </header>
 <section>
-	<label id="num">num : </label>
-    <input id="x" type="text" placeholder="">
-    <input id="y" type="text" placeholder="">
-    <input id="add" type="button" onclick="" value="=">
-    <input id="result" type="text">
+	<div>
+	<form>
+	<p>
+		<input type="text" value="0" id="num1" onfocus="focusIn(this)">
+		<select id="op" onchange="calc()">
+			<option value="+">+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+		</select>
+		<input type="text" value="0" id="num2" onfocus="focusIn(this)">
+		=
+		<input type="text" value="0" id="num3" readonly="readonly">
+	</p>
+	<p>
+		<input type="button" value="계산" onclick="calc()">
+		<input type="reset" value="초기화">
+	</p>
+	</form>		
+	</div>
+
 </section>
 </body>
 </html>

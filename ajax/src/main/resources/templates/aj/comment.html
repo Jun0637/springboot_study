@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>comment</title>
+<style>
+#name {
+	width: 80px;
+}
+#text {
+	width: 350px;
+}
+td.tdNum {
+	background-color: #dddddd;
+	width: 30px;
+	text-align: center;
+}
+td.tdName {
+	background-color: #dddddd;
+	width: 100px;
+	text-align: center;
+}
+td.tdText {
+	background-color: #dddddd;
+	width: 400px;
+	text-align: left;
+}
+</style>
+<script th:src="@{/js/jquery-3.6.3.js}"></script>
+<script>
+$(document).ready(function() {
+	//기존 저장된 리플들 읽어옴
+	init();
+	//"저장" 버튼을 클릭하면 insertComment() 함수 호출
+	$('#bt').click(insertComment);
+});
+//모든 리플들 읽어오기
+function init() {
+	$.ajax({
+		url: 'list',
+		type: 'get',
+		dataType: 'json',
+		success: output
+	});
+}
+//서버에서 리턴받은 리플목록을 화면에 출력
+function output(msg) {
+	var s = '<table>';
+    $.each(msg, function(key, item){
+		s += '<tr>';
+		s += '<td class="tdNum">' + item.num + '</td>';
+		s += '<td class="tdName">' + item.name + '</td>';
+		s += '<td class="tdText">' + item.text + '</td>';
+		//각 리플마다 삭제 버튼을 만든다. 사용자 정의 속성 'num'에 삭제할 글 번호 대입
+		s += '<td><input type="button" value="삭제" class="delbt" num="'+ item.num +'"></td>';
+		s += '</tr>';
+    });
+    s += '</table>';
+    
+    //목록 출력 영역에 내용 삽입
+	$('#listDiv').html(s);
+	//삭제버튼 이벤트 처리
+	$('input.delbt').click(deleteComment);
+}
+
+function deleteComment() {
+	//서버로 삭제 요청
+	let n = $(this).attr('num');
+	$.ajax({
+		url : 'deleteComment',
+		type : 'get',
+		data : {num: n},
+		success: function() { 
+			alert('삭제되었습니다.');
+			init();
+		},
+		error : function () { alert('삭제실패');}
+	});
+}
+
+//리플 저장
+function insertComment() {
+	let name = $('#name').val();
+	let text = $('#text').val();
+	
+	$.ajax({
+		url: 'insertComment',
+		type: 'post',
+		data: {name: name, text: text},
+		success: function() {
+			alert('저장되었습니다.');
+			$('#text').val('');
+			init();
+		},
+		error: function () {
+			alert('저장 실패');
+		}
+	});
+}
+</script>
+</head>
+<body>
+	<h1>[ 리플달기 ]</h1>
+
+<!-- 리플 작성 폼 -->
+<form>
+이름 <input type="text" id="name">
+내용 <input type="text" id="text">
+	<input type="button" id="bt" value="저장">
+</form>
+<br>
+<!-- 리플 목록 출력 영역 -->
+<div id="listDiv">
+
+</div>
+</body>
+</html>
+

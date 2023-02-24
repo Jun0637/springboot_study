@@ -1,42 +1,73 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>jq1</title>
 <script th:src="@{/js/jquery-3.6.3.js}"></script>
 <script>
-$(document).ready(function(){
-	//이벤트 연결
-	$('#button1').on('click', buttonClick);
-	//$('button1').click(Click);
-	$('#button2').on('click', buttonOff);
-	$('#button3').on('click', buttonOn);
-	$('#button4').on('click', buttonTrigger);
+$(document).ready(function() {
+	$('#bt1').on('click', test1);
+	$('#bt2').on('click', test2);
+	$('#bt3').on('click', test3);
+	$('#bt4').on('click', test4);
 });
-function buttonClick(){
-	alert("button1 클릭함");
-}
-function buttonOff(){
-	$('button1').off();
-	//$('button1').off('click'));
-	//$('button1').off('click', buttonClick);
-}
-function buttonOn(){
-	$('button1').on('click', buttonClick);
-}
-function buttonTrigger(){
-	$('#button1').trigger('click');
+
+function test1() {
+	let a = [];
+	let b = new Array();
+	let c = new Array(3);
+	let d = [10,20,30];
+	
+	alert(d);
+	console.log(d);
+	console.log(c);
+	
+	console.log(d[0]);
+	console.log(d.length);
+	d[0] = 99;
+	console.log(d);
+	d[4] = 111;
+	console.log(d);
+	d.push(22);
+	console.log(d);
+	d.pop();
+	console.log(d);
+	d.reverse();
+	console.log(d);
 }
 
+function test2() {
+	let ar = [4,2,5,4,9];
+	
+	$.each(ar, function(i, n) {
+		console.log('i=' + i + ', n=' + n);
+	});
+}
+function test3() {
+	let ar = ['aaa', 'bbb', 'eee', 'www'];
+	
+	$(ar).each(function(i, n) {
+		console.log(n);
+	});
+}
+function test4() {
+	let ar = [{num:10, id:'aaa', title:'제목1'}
+			, {num:20, id:'bbb', title:'제목2'}
+			, {num:30, id:'ccc', title:'제목3'}];
+	
+	$.each(ar, function(i, ob) {
+		console.log(ob.id + ',' + ob.title);
+	});
+}
 </script>
 </head>
 <body>
-	<h1>[이벤트]</h1>
-	<p><input type="button" value="button1" id="button1"></p>
-	<p><input type="button" value="이벤트 연결 해제" id="button2"></p>
-	<p><input type="button" value="이벤트 연결" id="button3"></p>
-	<p><input type="button" value="이벤트 강제 발생" id="button4"></p>
-	<p><input type="button" value="일정시간 후에 이벤트 강제 발생" id="button5"></p>
-	<p><input type="button" value="일정시간 간격으로 이벤트 강제 발생" id="button5"></p>
+	<h1>[ 배열 ]</h1>
+	<p><input type="button" id="bt1" value="배열 사용"></p>
+	<p><input type="button" id="bt2" value="each() 함수 1"></p>
+	<p><input type="button" id="bt3" value="each() 함수 2"></p>
+	<p><input type="button" id="bt4" value="each() 함수 - 객체 배열"></p>
 </body>
 </html>
+

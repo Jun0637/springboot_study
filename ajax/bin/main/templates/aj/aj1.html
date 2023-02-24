@@ -1,71 +1,73 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="UTF-8">
 <title>aj1</title>
 <script th:src="@{/js/jquery-3.6.3.js}"></script>
 <script>
-$(document).ready(function(){
-	
+$(document).ready(function() {
+
 });
-function test1(){
-	alert('시작');
+
+function test1() {
+	alert('test1 시작');
 	$.ajax({
-		url:'test1',
-		type:'get',
-		success: function(){
+		url: 'test1',
+		type: 'get',
+		success: function() {
 			alert('success로 리턴');
 		},
-		error: function(e){
+		error: function(e) {
 			alert(JSON.stringify(e));
 		}
 	});
-	alert('끝');
+	alert('test1 끝');
 }
-function test2(){
+
+function test2() {
 	$.ajax({
-		url:'test2',
-		type:'get',
-		data:{str: '클라이언트에서 보내는 값', num:111}, //data는 controller로 보냄
-		dataType:'text', //text, json
-		success: function(s){
+		url: 'test2',
+		type: 'get',
+		data: {str: '클라이언트에서 보내는값', num:111},
+		dataType: 'text', //text, json
+		success: function(s) {
 			alert('success' + s);
 		},
-		error: function(){
-			alert('error');
-		}
+		error: function() {alert('error');}		
 	});
 }
-function test3(){
+
+function test3() {
 	$.ajax({
 		url: 'test3',
-		type:'get',
+		type: 'get',
 		data: {text: $('#in').html()},
 		dataType: 'text',
-		success: function(s){
+		success: function(s) {
 			let tag = '';
 			tag += '<table><tr><td>';
 			tag += s;
-			tag += '</td></tr><table>'
+			tag += '</td></tr></table>';
 			$('#out').html(tag);
 		},
-		error: function(){
-			alert('error');
-		}
-		
+		error: function() {alert('error');}
 	});
 }
 </script>
+
 </head>
 <body>
-	<h2>[Ajax 요청/응답]</h2>
-	<p><a href="javascript:test1()">서버로 Ajax 용청 보내기</a>
-	<p><a href="javascript:test2()">문자열 보내기/받기</a>
+	<h1>[ Ajax 요청/응답 ]</h1>
+	<p><a href="javascript:test1()">서버로 Ajax 요청 보내기</a>
+	<p><a href="javascript:test2()">문자열 보내기 / 받기</a>
 	
-	<!-- ID가 'in'인 영역의 텍스트를 서버로 보내
+	<!-- ID가 'in'인 영역의 텍스트를 서버로 보내 
 	대문자로 변환하여 받아서 ID가 'out'인 영역에 출력 -->
 	<p><a href="javascript:test3()">대문자로 변환</a>
 	<div id="in">abcde</div>
 	<div id="out"></div>
+	
 </body>
 </html>
+

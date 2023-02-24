@@ -11,26 +11,24 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("javascript")
 public class JavaScriptController {
 
-	@GetMapping("/js1")
+	@GetMapping("js1")
 	public String js1() {
-		
-		return "/js/js1";
+		return "js/js1";
 	}
 	
-	@GetMapping("/js2")
-	public String j2() {
+	@GetMapping("js2")
+	public String js2() {
 		return "js/js2";
 	}
 	
-	@GetMapping("/js3")
+	@GetMapping("js3")
 	public String js3() {
-		
-		return "/js/js3";
+		return "js/js3";
 	}
 	
-	@GetMapping("/js4")
+	@GetMapping("js4")
 	public String js4() {
-		
-		return "/js/js4";
+		return "js/js4";
 	}
+	
 }

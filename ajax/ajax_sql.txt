@@ -1,0 +1,12 @@
+
+--댓글 기능
+-- Ajax Test용 테이블
+create table ajax_comment (
+	num		number primary key,
+	name	varchar2(20) not null,
+	text	varchar2(200) not null
+);
+
+create sequence ajax_comment_seq;
+
+insert into ajax_comment values (ajax_comment_seq.nextval, '홍길동', '댓글내용입니다.');
